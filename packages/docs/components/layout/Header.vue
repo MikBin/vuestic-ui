@@ -3,7 +3,7 @@
     class="header-wrapper"
     :class="isOptionsVisible && 'header-wrapper--expanded'"
   >
-    <HeaderBanner closeable />
+    <BannerContainer :banners="bannerComponents" closeable />
 
     <VaNavbar
       v-show="!isOptionsVisible"
@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts" setup>
-import { computed, ref } from 'vue'
+import { computed, markRaw, ref } from 'vue'
 
 import VersionDropdown from './header/VersionDropdown.vue'
 import ColorDropdown from './header/ColorDropdown.vue'
@@ -121,6 +121,9 @@ import HeaderSelector from './header/HeaderSelector.vue'
 import VuesticLogo from './header/VuesticDocsLogo.vue'
 import ThemeSwitch from './header/ThemeSwitch.vue'
 import SocialsLinks from '../landing/SocialsLinks.vue'
+import BannerContainer from './header/BannerContainer.vue'
+import ConsultBannerContent from './header/banners/ConsultBannerContent.vue'
+import VueConfBannerContent from './header/banners/VueConfBannerContent.vue'
 
 const props = defineProps({
   isSidebarVisible: {
@@ -139,6 +142,8 @@ const breakpoints = useBreakpoint()
 
 const isOptionsMenuVisible = ref(false)
 const isOptionsListVisible = ref(false)
+
+const bannerComponents = [markRaw(VueConfBannerContent), markRaw(ConsultBannerContent)]
 
 const landing = computed(() => ({
   text: 'Home',

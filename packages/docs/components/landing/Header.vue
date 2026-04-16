@@ -1,6 +1,6 @@
 <template>
   <div>
-    <HeaderBanner wrapped />
+    <BannerContainer :banners="bannerComponents" closeable />
 
     <header class="header">
       <div class="header__wrapper">
@@ -81,7 +81,7 @@
             class="mobile-menu"
             :class="{ 'mobile-menu--open': modelValue }"
           >
-            <HeaderBanner wrapped />
+            <BannerContainer :banners="bannerComponents" closeable />
 
             <div class="mobile-menu__menu-button-wrapper">
               <div class="mobile-menu__menu-button-container">
@@ -146,8 +146,12 @@
 </template>
 
 <script lang="ts" setup>
+import { markRaw } from 'vue'
 import SocialsLinks from './SocialsLinks.vue'
 import StarsButton from './StarsButton.vue'
+import BannerContainer from '../layout/header/BannerContainer.vue'
+import ConsultBannerContent from '../layout/header/banners/ConsultBannerContent.vue'
+import VueConfBannerContent from '../layout/header/banners/VueConfBannerContent.vue'
 
 defineProps({
   modelValue: {
@@ -157,6 +161,8 @@ defineProps({
 })
 
 defineEmits(['update:modelValue'])
+
+const bannerComponents = [markRaw(VueConfBannerContent), markRaw(ConsultBannerContent)]
 </script>
 
 <style lang="scss" scoped>
