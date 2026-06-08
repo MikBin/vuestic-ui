@@ -11,6 +11,7 @@
   },
   "private": true,
   "scripts": {
+    "check-sync": "tsx scripts/check-sync-delta.ts",
     "serve:storybook": "yarn workspace vuestic-ui serve:storybook",
     "start:docs:ci": "yarn workspace docs start:ci",
     "serve:production": "yarn workspace vuestic-ui serve:production",
